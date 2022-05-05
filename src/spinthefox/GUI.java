@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.TimerTask;
-import java.util.Timer;
 
 public class GUI extends JComponent implements KeyListener {
 
+    final static int rotationSpeed = 60;
     final static int height = 800;
     final static int width = 800;
     private Controller controller;
@@ -27,22 +26,12 @@ public class GUI extends JComponent implements KeyListener {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Spin the Fox");
         GUI gui = new GUI();
-//        frame.getContentPane().setBackground(Color.BLACK);
         frame.setPreferredSize(new Dimension(width, height));
         frame.add(gui);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.pack();
-//        gui.setBackground(Color.BLACK);
         frame.addKeyListener(gui);
-//        int delay = 0; // delay for 5 sec.
-//        int period = 150; // repeat every sec.
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            public void run() {
-//                gui.repaint();
-//            }
-//        }, delay, period);
     }
 
     @Override
@@ -51,24 +40,82 @@ public class GUI extends JComponent implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundX((Math.PI) / rotationSpeed);
+                }
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundX((-1 * Math.PI) / rotationSpeed);
+                }
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             for (Polyhedron polyhedron : controller.getPolyhedrons()) {
                 for (Vertex vertex : polyhedron.getVertices()) {
-                    vertex.rotateAroundZ((-1 * Math.PI) / 15);
+                    vertex.rotateAroundY((Math.PI) / rotationSpeed);
                 }
             }
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             for (Polyhedron polyhedron : controller.getPolyhedrons()) {
                 for (Vertex vertex : polyhedron.getVertices()) {
-                    vertex.rotateAroundZ((Math.PI) / 15);
+                    vertex.rotateAroundY((-1 * Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundZ((Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundZ((-1 * Math.PI) / rotationSpeed);
+                }
+            }
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundX((Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundX((-1 * Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundY((Math.PI) / 15);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundY((-1 * Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundZ((Math.PI) / rotationSpeed);
+                }
+            }
+        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+            for (Polyhedron polyhedron : controller.getPolyhedrons()) {
+                for (Vertex vertex : polyhedron.getVertices()) {
+                    vertex.rotateAroundZ((-1 * Math.PI) / rotationSpeed);
                 }
             }
         }

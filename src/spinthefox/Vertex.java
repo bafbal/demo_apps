@@ -1,6 +1,6 @@
 package spinthefox;
 
-public class Vertex {
+public class Vertex{
 
     private double[] xyz = new double[3];
     private int[] shadow = new int[2];
@@ -29,16 +29,45 @@ public class Vertex {
 
     public void rotateAroundX(double radian) {
         angles[0] += radian;
-        xyz[1] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[0], 2)) / (1 + Math.pow(Math.tan(angles[0]), 2)));
-        xyz[2] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[0], 2) - Math.pow(xyz[1], 2));
+        if (angles[0] > Math.PI) {
+            angles[0] -= 2 * Math.PI;
+        }
+        if (angles[0] < -1 * Math.PI) {
+            angles[0] += 2 * Math.PI;
+        }
+        if (angles[0] < Math.PI / 2 && angles[0] > -1 * Math.PI / 2) {
+            xyz[1] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[0], 2)) / (1 + Math.pow(Math.tan(angles[0]), 2)));
+        } else {
+            xyz[1] = -1 * Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[0], 2)) / (1 + Math.pow(Math.tan(angles[0]), 2)));
+        }
+        if (angles[0] > 0) {
+            xyz[2] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[0], 2) - Math.pow(xyz[1], 2));
+        } else {
+            xyz[2] = -1 * Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[0], 2) - Math.pow(xyz[1], 2));
+        }
+
         calculateangles();
         calculateShadow();
     }
 
     public void rotateAroundY(double radian) {
         angles[1] += radian;
-        xyz[2] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[1], 2)) / (1 + Math.pow(Math.tan(angles[1]), 2)));
-        xyz[0] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        if (angles[1] > Math.PI) {
+            angles[1] -= 2 * Math.PI;
+        }
+        if (angles[1] < -1 * Math.PI) {
+            angles[1] += 2 * Math.PI;
+        }
+        if (angles[1] < Math.PI / 2 && angles[1] > -1 * Math.PI / 2) {
+            xyz[2] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[1], 2)) / (1 + Math.pow(Math.tan(angles[1]), 2)));
+        } else {
+            xyz[2] = -1 * Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[1], 2)) / (1 + Math.pow(Math.tan(angles[1]), 2)));
+        }
+        if (angles[1] > 0) {
+            xyz[0] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        } else {
+            xyz[0] = -1 * Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        }
         calculateangles();
         calculateShadow();
     }
