@@ -11,19 +11,30 @@ public class Polyhedron {
     private List<Facet> facets = new ArrayList<>();
 
     public Polyhedron(String vertexFile, String facetsFile) {
+        fillVertices(vertexFile);
+        fillEdges(vertexFile);
+        fillFacets(facetsFile);
+    }
+
+    private void fillVertices(String vertexFile){
         List<String> verticeList = Reader.read(vertexFile);
         for (String string : verticeList) {
             String[] stringArray =  string.split(",");
             vertices.add(new Vertex(Double.parseDouble(stringArray[0]),Double.parseDouble(stringArray[1]),Double.parseDouble(stringArray[2])));
         }
+    }
 
+    private void fillEdges(String vertexFile){
+        List<String> verticeList = Reader.read(vertexFile);
         for (int i = 0; i < verticeList.size(); i++) {
             String[] stringArray =  verticeList.get(i).split(",");
             for (int j = 3; j < stringArray.length; j++) {
                 edges.add(new Edge(vertices.get(i),vertices.get(Integer.parseInt(stringArray[j]))));
             }
         }
+    }
 
+    private void fillFacets(String facetsFile) {
         List<String> facetList = Reader.read(facetsFile);
         List<Vertex> temporaryVertices = new ArrayList<>();
         for (int i = 0; i < facetList.size(); i++) {

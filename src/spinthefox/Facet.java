@@ -17,19 +17,15 @@ public class Facet implements Comparable<Facet>{
     }
 
     private int[] getXPoints() {
-        int[] xPoints = new int[vertices.size()];
-        for (int i = 0; i < vertices.size(); i++) {
-            xPoints[i] = vertices.get(i).getShadow()[0];
-        }
-        return xPoints;
+        return vertices.stream()
+                .mapToInt(x -> x.getShadow()[0])
+                .toArray();
     }
 
     private int[] getYPoints() {
-        int[] yPoints = new int[vertices.size()];
-        for (int i = 0; i < vertices.size(); i++) {
-            yPoints[i] = vertices.get(i).getShadow()[1];
-        }
-        return yPoints;
+        return vertices.stream()
+                .mapToInt(y -> y.getShadow()[1])
+                .toArray();
     }
 
     public Vertex getRearmostVertex() {

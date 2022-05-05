@@ -45,7 +45,6 @@ public class Vertex{
         } else {
             xyz[2] = -1 * Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[0], 2) - Math.pow(xyz[1], 2));
         }
-
         calculateangles();
         calculateShadow();
     }
@@ -100,13 +99,5 @@ public class Vertex{
 
     public double[] getXyz() {
         return xyz;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public double[] getAngles() {
-        return angles;
     }
 }

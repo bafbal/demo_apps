@@ -24,7 +24,7 @@ public class GUI extends JComponent implements KeyListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Spin the Fox");
+        JFrame frame = new JFrame("Spin the Cube");
         GUI gui = new GUI();
         frame.setPreferredSize(new Dimension(width, height));
         frame.add(gui);
