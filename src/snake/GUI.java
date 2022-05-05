@@ -36,7 +36,7 @@ public class GUI extends JComponent implements KeyListener {
         gui.setBackground(Color.BLACK);
         frame.addKeyListener(gui);
         int delay = 0; // delay for 5 sec.
-        int period = 150; // repeat every sec.
+        int period = 200; // repeat every sec.
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
@@ -72,23 +72,23 @@ public class GUI extends JComponent implements KeyListener {
                 game.getSnakes().get(0).setDirection(1, 0);
             }
         }
-        else if (e.getKeyCode() == KeyEvent.VK_W) {
-            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[1] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[1] - 1) {
-                game.getSnakes().get(1).setDirection(0, -1);
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[1] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[1] + 1) {
-                game.getSnakes().get(1).setDirection(0, 1);
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[0] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[0] - 1) {
-                game.getSnakes().get(1).setDirection(-1, 0);
-            }
-        } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[0] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[0] + 1) {
-                game.getSnakes().get(1).setDirection(1, 0);
-            }
-        }
+//        else if (e.getKeyCode() == KeyEvent.VK_W) {
+//            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[1] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[1] - 1) {
+//                game.getSnakes().get(1).setDirection(0, -1);
+//            }
+//        } else if (e.getKeyCode() == KeyEvent.VK_S) {
+//            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[1] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[1] + 1) {
+//                game.getSnakes().get(1).setDirection(0, 1);
+//            }
+//        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+//            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[0] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[0] - 1) {
+//                game.getSnakes().get(1).setDirection(-1, 0);
+//            }
+//        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+//            if (game.getSnakes().get(1).getSections().get(1).getCoordinate()[0] != game.getSnakes().get(1).getSections().get(0).getCoordinate()[0] + 1) {
+//                game.getSnakes().get(1).setDirection(1, 0);
+//            }
+//        }
 
 
 

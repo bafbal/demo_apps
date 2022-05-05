@@ -4,7 +4,7 @@ import java.awt.*;
 
 public interface Drawable {
 
-    int gridSize = 40;
+    int gridSize = 30;
 
     void draw(Graphics graphics);
 

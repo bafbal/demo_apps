@@ -17,14 +17,14 @@ public class Vertex {
     }
 
     private void calculateangles() {
-        angles[0] = Math.atan(xyz[2] / xyz[1]);
-        angles[1] = Math.atan(xyz[0] / xyz[2]);
-        angles[2] = Math.atan(xyz[0] / xyz[1]);
+        angles[0] = Math.atan2(xyz[2], xyz[1]);
+        angles[1] = Math.atan2(xyz[0], xyz[2]);
+        angles[2] = Math.atan2(xyz[0], xyz[1]);
     }
 
     private void calculateShadow() {
-        shadow[0] = (int) (xyz[0] * 1000 / (xyz[2]+500) + 400);
-        shadow[1] = (int) (400 - xyz[1] * 1000 / (xyz[2]+500));
+        shadow[0] = (int) (xyz[0] * 1000 / (xyz[2] + 500) + 400);
+        shadow[1] = (int) (400 - xyz[1] * 1000 / (xyz[2] + 500));
     }
 
     public void rotateAroundX(double radian) {
@@ -45,13 +45,39 @@ public class Vertex {
 
     public void rotateAroundZ(double radian) {
         angles[2] += radian;
-        xyz[1] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[2], 2)) / (1 + Math.pow(Math.tan(angles[2]), 2)));
-        xyz[0] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        if (angles[2] > Math.PI) {
+            angles[2] -= 2 * Math.PI;
+        }
+        if (angles[2] < -1 * Math.PI) {
+            angles[2] += 2 * Math.PI;
+        }
+        if (angles[2] < Math.PI / 2 && angles[2] > -1 * Math.PI / 2) {
+            xyz[1] = Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[2], 2)) / (1 + Math.pow(Math.tan(angles[2]), 2)));
+        } else {
+            xyz[1] = -1 * Math.sqrt((Math.pow(radius, 2) - Math.pow(xyz[2], 2)) / (1 + Math.pow(Math.tan(angles[2]), 2)));
+        }
+        if (angles[2] > 0) {
+            xyz[0] = Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        } else {
+            xyz[0] = -1 * Math.sqrt(Math.pow(radius, 2) - Math.pow(xyz[1], 2) - Math.pow(xyz[2], 2));
+        }
         calculateangles();
         calculateShadow();
     }
 
     public int[] getShadow() {
         return shadow;
+    }
+
+    public double[] getXyz() {
+        return xyz;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public double[] getAngles() {
+        return angles;
     }
 }

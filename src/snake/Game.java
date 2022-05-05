@@ -92,7 +92,7 @@ public class Game {
 
     public void addSnake() {
         snakes.add(new Snake(Color.BLUE, Color.WHITE,new int[]{5,5},new int[]{1,0}));
-        snakes.add(new Snake(Color.GREEN, Color.YELLOW,new int[]{10,10},new int[]{-1,0}));
+//        snakes.add(new Snake(Color.GREEN, Color.YELLOW,new int[]{10,10},new int[]{-1,0}));
     }
 
     public List<Snake> getSnakes() {
